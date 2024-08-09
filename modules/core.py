@@ -1,5 +1,7 @@
 import os
 import sys
+
+import tensorflow.compiler
 # single thread doubles cuda performance - needs to be set before torch import
 if any(arg.startswith('--execution-provider') for arg in sys.argv):
     os.environ['OMP_NUM_THREADS'] = '1'
@@ -128,9 +130,9 @@ def suggest_execution_threads() -> int:
 
 def limit_resources() -> None:
     # prevent tensorflow memory leak
-    gpus = tensorflow.config.experimental.list_physical_devices('GPU')
+    gpus = tensorflow.config.list_physical_devices('GPU')
     for gpu in gpus:
-        tensorflow.config.experimental.set_memory_growth(gpu, True)
+        tensorflow.config.set_memory_growth(gpu, True)
     # limit memory usage
     if modules.globals.max_memory:
         memory = modules.globals.max_memory * 1024 ** 3
