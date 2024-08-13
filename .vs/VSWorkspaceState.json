@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\modules"
+    "\\env",
+    "\\models"
   ],
-  "SelectedNode": "\\modules\\core.py",
+  "SelectedNode": "\\run-cuda.bat",
   "PreviewInSolutionExplorer": false
 }
